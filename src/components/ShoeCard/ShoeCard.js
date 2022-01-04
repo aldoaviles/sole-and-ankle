@@ -31,10 +31,19 @@ const ShoeCard = ({
       ? 'new-release'
       : 'default'
 
+  const coloresVariant = {
+    'on-sale': COLORS.primary,
+    'new-release': COLORS.secondary,
+    'default': null
+  }
+
+  const color = coloresVariant[variant];
+  
   return (
     <Link href={`/shoe/${slug}`}>
       <Wrapper>
         <ImageWrapper>
+          <Etiqueta style={{ '--color': color }}>{variant}</Etiqueta>
           <Image alt="" src={imageSrc} />
         </ImageWrapper>
         <Spacer size={12} />
@@ -53,18 +62,28 @@ const ShoeCard = ({
 const Link = styled.a`
   text-decoration: none;
   color: inherit;
+  max-width: 350px;
 `;
 
-const Wrapper = styled.article``;
+const Wrapper = styled.article`
+  display: flex;
+  flex-direction: column;
+`;
 
 const ImageWrapper = styled.div`
   position: relative;
 `;
 
-const Image = styled.img``;
+const Image = styled.img`
+  width: 100%;
+  border: 0px solid;
+  border-radius: 8px 8px 0px 0px;
+`;
 
 const Row = styled.div`
   font-size: 1rem;
+  display: flex;
+  justify-content: space-between;
 `;
 
 const Name = styled.h3`
@@ -81,6 +100,16 @@ const ColorInfo = styled.p`
 const SalePrice = styled.span`
   font-weight: ${WEIGHTS.medium};
   color: ${COLORS.primary};
+`;
+
+const Etiqueta = styled.div`
+  position: absolute;
+  top: 10px;
+  right: -5px;
+  padding: 6px 12px;
+  color: white;
+  border-radius: 4px;
+  background-color: var(--color);
 `;
 
 export default ShoeCard;
