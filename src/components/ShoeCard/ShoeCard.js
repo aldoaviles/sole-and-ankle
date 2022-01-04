@@ -43,7 +43,7 @@ const ShoeCard = ({
     <Link href={`/shoe/${slug}`}>
       <Wrapper>
         <ImageWrapper>
-          <Etiqueta style={{ '--color': color }}>{variant}</Etiqueta>
+          { variant !== 'default' && <Etiqueta style={{ '--color': color }}>{variant}</Etiqueta> }
           <Image alt="" src={imageSrc} />
         </ImageWrapper>
         <Spacer size={12} />
@@ -62,7 +62,8 @@ const ShoeCard = ({
 const Link = styled.a`
   text-decoration: none;
   color: inherit;
-  max-width: 350px;
+  min-width: 350px;
+  flex: 1;
 `;
 
 const Wrapper = styled.article`
